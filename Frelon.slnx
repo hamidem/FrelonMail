@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Frelon.Application/Frelon.Application.csproj" />
+    <Project Path="src/Frelon.Cli/Frelon.Cli.csproj" />
+    <Project Path="src/Frelon.Core/Frelon.Core.csproj" />
+    <Project Path="src/Frelon.Exporters/Frelon.Exporters.csproj" />
+    <Project Path="src/Frelon.Mail/Frelon.Mail.csproj" />
+    <Project Path="src/Frelon.Reports/Frelon.Reports.csproj" />
+    <Project Path="src/Frelon.Storage/Frelon.Storage.csproj" />
+    <Project Path="src/Frelon.Web/Frelon.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Frelon.Application.Tests/Frelon.Application.Tests.csproj" />
+    <Project Path="tests/Frelon.Cli.Tests/Frelon.Cli.Tests.csproj" />
+    <Project Path="tests/Frelon.Core.Tests/Frelon.Core.Tests.csproj" />
+    <Project Path="tests/Frelon.Exporters.Tests/Frelon.Exporters.Tests.csproj" />
+    <Project Path="tests/Frelon.Mail.Tests/Frelon.Mail.Tests.csproj" />
+    <Project Path="tests/Frelon.Reports.Tests/Frelon.Reports.Tests.csproj" />
+    <Project Path="tests/Frelon.Storage.Tests/Frelon.Storage.Tests.csproj" Id="541e6a24-eba3-4b0d-a582-818c8c4b775f" />
+    <Project Path="tests/Frelon.Web.Tests/Frelon.Web.Tests.csproj" />
+  </Folder>
+</Solution>

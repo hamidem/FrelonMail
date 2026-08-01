@@ -1,0 +1,46 @@
+FRELON — ANALYSE LOCALE DE COURRIELS SUSPECTS
+================================================
+
+DÉMARRER
+
+1. Conservez tous les fichiers de cette archive dans le même dossier.
+2. Double-cliquez sur Frelon.Web.exe.
+3. Votre navigateur s'ouvre sur l'interface locale de Frelon.
+4. Utilisez le bouton « Quitter Frelon » pour arrêter complètement l'application.
+
+Fermer uniquement l'onglet du navigateur ne ferme pas Frelon. Un second
+double-clic rouvre l'interface de l'instance déjà active.
+
+CONFIDENTIALITÉ
+
+L'analyse est effectuée localement sur votre ordinateur. Frelon n'envoie pas le
+courriel, ses indicateurs ou vos décisions vers un service distant. Les données
+sont conservées dans le dossier applicatif local de votre compte Windows.
+
+PRUDENCE
+
+Frelon aide à examiner un message ; il ne garantit pas qu'un courriel est sûr et
+ne remplace ni un antivirus ni l'avis d'une personne chargée de la sécurité.
+N'ouvrez pas les liens ou pièces jointes du message suspect.
+
+AUTHENTICITÉ DU TÉLÉCHARGEMENT
+
+Téléchargez Frelon uniquement depuis :
+https://github.com/hamidem/FrelonMail/releases
+
+Chaque archive officielle est accompagnée d'un fichier .sha256. Vous pouvez
+comparer son empreinte avec celle calculée dans PowerShell :
+
+    Get-FileHash .\Frelon-<version>-win-x64.zip -Algorithm SHA256
+
+L'exécutable n'est pas encore signé. Windows SmartScreen peut donc afficher un
+avertissement. L'empreinte vérifie l'intégrité de l'archive, mais ne remplace pas
+une signature de code.
+
+LICENCE ET SÉCURITÉ
+
+La licence MPL-2.0 de Frelon est fournie dans LICENSE.txt.
+Les licences et attributions des composants intégrés sont fournies dans
+THIRD-PARTY-NOTICES.txt et DOTNET-THIRD-PARTY-NOTICES.txt.
+Pour signaler confidentiellement une vulnérabilité :
+https://github.com/hamidem/FrelonMail/security/advisories/new

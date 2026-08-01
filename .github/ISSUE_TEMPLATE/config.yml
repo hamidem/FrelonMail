@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Signaler une vulnérabilité en privé
+    url: https://github.com/hamidem/FrelonMail/security/advisories/new
+    about: Ne publiez aucune vulnérabilité ou donnée sensible dans une issue publique.
+  - name: Lire le kit de test
+    url: https://github.com/hamidem/FrelonMail/blob/main/BETA.md
+    about: Préparer et réaliser le parcours bêta en 20 à 30 minutes.

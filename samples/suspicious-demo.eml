@@ -1,0 +1,17 @@
+Return-Path: <bounce@mailer.example>
+Received: from relay.example by mx.example.test with ESMTP; Wed, 15 Jul 2026 18:00:00 +0000
+Authentication-Results: mx.example.test; spf=fail smtp.mailfrom=mailer.example; dkim=fail; dmarc=fail
+From: Example Support <support@example>
+Reply-To: review@example
+To: analyst@example.test
+Message-ID: <demo-frelon-001@example>
+Subject: Vérification urgente de votre compte
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Bonjour,
+
+Une activité inhabituelle a été détectée. Consultez la page suivante :
+https://phishing.example/account/review
+
+Ce message est une fixture locale inoffensive. Le domaine .example est réservé à la documentation.

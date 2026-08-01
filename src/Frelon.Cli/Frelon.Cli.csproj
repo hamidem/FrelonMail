@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Frelon.Core\Frelon.Core.csproj" />
+    <ProjectReference Include="..\Frelon.Exporters\Frelon.Exporters.csproj" />
+    <ProjectReference Include="..\Frelon.Mail\Frelon.Mail.csproj" />
+    <ProjectReference Include="..\Frelon.Reports\Frelon.Reports.csproj" />
+    <ProjectReference Include="..\Frelon.Storage\Frelon.Storage.csproj" />
+  </ItemGroup>
+
+</Project>

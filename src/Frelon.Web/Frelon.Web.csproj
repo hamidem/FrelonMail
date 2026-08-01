@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Product>Frelon</Product>
+    <AssemblyTitle>Frelon</AssemblyTitle>
+    <Company>Moralement.NET</Company>
+    <Authors>Moralement.NET</Authors>
+    <Copyright>Copyright © 2026 Moralement.NET</Copyright>
+    <Description>Application locale d'analyse défensive de courriels suspects.</Description>
+    <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionSuffix>beta.1</VersionSuffix>
+    <RepositoryUrl>https://github.com/hamidem/Frelon</RepositoryUrl>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <Target Name="RemovePackagedSymbols"
+          AfterTargets="Publish"
+          Condition="'$(FrelonPackagedApplication)' == 'true'">
+    <ItemGroup>
+      <PackagedSymbol Include="$(PublishDir)*.pdb" />
+    </ItemGroup>
+    <Delete Files="@(PackagedSymbol)" />
+  </Target>
+
+  <Target Name="RequirePackagedLicense"
+          BeforeTargets="Publish"
+          Condition="'$(FrelonPackagedApplication)' == 'true'">
+    <Error Condition="!Exists('$(MSBuildProjectDirectory)\..\..\LICENSE')"
+           Text="La publication Windows exige le fichier LICENSE MPL-2.0." />
+    <Error Condition="!Exists('$(MSBuildProjectDirectory)\..\..\packaging\THIRD-PARTY-NOTICES.txt')"
+           Text="La publication Windows exige les notices des composants tiers." />
+    <Error Condition="!Exists('$(NetCoreRoot)ThirdPartyNotices.txt')"
+           Text="La publication Windows exige les notices du runtime .NET." />
+  </Target>
+
+  <ItemGroup>
+    <Content Include="..\..\LICENSE"
+             Link="LICENSE.txt"
+             CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\packaging\LISEZ-MOI.txt"
+             Link="LISEZ-MOI.txt"
+             CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\packaging\THIRD-PARTY-NOTICES.txt"
+             Link="THIRD-PARTY-NOTICES.txt"
+             CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="$(NetCoreRoot)ThirdPartyNotices.txt"
+             Link="DOTNET-THIRD-PARTY-NOTICES.txt"
+             CopyToPublishDirectory="PreserveNewest"
+             Condition="Exists('$(NetCoreRoot)ThirdPartyNotices.txt')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Frelon.Core\Frelon.Core.csproj" />
+    <ProjectReference Include="..\Frelon.Exporters\Frelon.Exporters.csproj" />
+    <ProjectReference Include="..\Frelon.Mail\Frelon.Mail.csproj" />
+    <ProjectReference Include="..\Frelon.Reports\Frelon.Reports.csproj" />
+    <ProjectReference Include="..\Frelon.Storage\Frelon.Storage.csproj" />
+  </ItemGroup>
+
+</Project>

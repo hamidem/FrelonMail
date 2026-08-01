@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Frelon — Analyse locale</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail">
+      <a class="brand" href="#top" aria-label="Accueil Frelon">
+        <span class="brand-mark" aria-hidden="true"><span>F</span></span>
+        <span><strong>Frelon</strong><small>Cockpit défensif</small></span>
+      </a>
+
+      <nav aria-label="Navigation principale">
+        <a class="nav-link active" href="#analyze">
+          <span class="nav-icon" aria-hidden="true">⌁</span>
+          Analyser
+        </a>
+        <a class="nav-link" href="#history">
+          <span class="nav-icon" aria-hidden="true">◫</span>
+          Historique
+        </a>
+        <a class="nav-link" href="#campaigns">
+          <span class="nav-icon" aria-hidden="true">⌘</span>
+          Campagnes
+        </a>
+      </nav>
+
+      <div class="rail-actions">
+        <button class="quit-action" id="quit-application" type="button">
+          <span aria-hidden="true">⏻</span>
+          <span>Quitter Frelon</span>
+        </button>
+        <div class="local-note">
+          <span class="pulse" aria-hidden="true"></span>
+          <div><strong>100 % local</strong><span>Aucun mail ne quitte cette machine.</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <main id="top">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Centre d'analyse</p>
+          <h1>Bonjour, analyste.</h1>
+        </div>
+        <div class="status-chip"><span></span> Moteur prêt</div>
+      </header>
+
+      <section class="intro" id="analyze">
+        <div>
+          <p class="section-kicker">Nouvelle investigation</p>
+          <h2>Un mail douteux mérite<br>des faits, pas un clic.</h2>
+          <p>Déposez le fichier du message suspect. Frelon l'examine hors ligne, conserve son empreinte et structure les indicateurs utiles.</p>
+        </div>
+        <div class="principle">
+          <span>Principe actif</span>
+          <strong>Observer sans interagir</strong>
+          <p>Les liens et pièces jointes ne sont jamais ouverts.</p>
+        </div>
+      </section>
+
+      <section class="workbench" aria-label="Analyse d'un email">
+        <form class="upload-card" id="upload-form">
+          <input id="file-input" type="file" accept=".eml,.msg,message/rfc822,application/vnd.ms-outlook" hidden>
+          <button class="drop-zone" id="drop-zone" type="button">
+            <span class="file-symbol" aria-hidden="true">
+              <span class="file-fold"></span>
+              <span class="scan-line"></span>
+            </span>
+            <span class="drop-copy">
+              <strong id="drop-title">Déposer le message suspect</strong>
+              <span id="drop-subtitle">Fichier EML ou MSG · cliquer pour le sélectionner · 25 Mo maximum</span>
+            </span>
+          </button>
+          <details class="source-help">
+            <summary>Comment récupérer le fichier du message&nbsp;?</summary>
+            <div class="source-help-grid">
+              <article>
+                <strong>Gmail</strong>
+                <p>Ouvrez le message, choisissez <em>Plus</em> <span aria-hidden="true">⋮</span>, puis <em>Télécharger le message</em>.</p>
+                <small>Gmail fournit un fichier EML.</small>
+              </article>
+              <article>
+                <strong>Outlook</strong>
+                <p>Ouvrez le message, puis choisissez <em>Autres actions</em> et <em>Enregistrer sous</em> ou <em>Télécharger</em>.</p>
+                <small>Outlook fournit généralement un fichier MSG, directement pris en charge par Frelon.</small>
+              </article>
+              <article>
+                <strong>Thunderbird</strong>
+                <p>Faites un clic droit sur le message, choisissez <em>Enregistrer sous</em>, puis le format courrier EML.</p>
+                <small>Le raccourci <kbd>Ctrl</kbd> + <kbd>S</kbd> est également disponible.</small>
+              </article>
+            </div>
+            <p class="source-help-note"><strong>Important :</strong> enregistrez le message lui-même, pas l'une de ses pièces jointes. Frelon n'ouvre aucun contenu actif.</p>
+          </details>
+          <div class="file-selection" id="file-selection" hidden>
+            <div><span class="mini-file">EML</span><span><strong id="file-name"></strong><small id="file-size"></small></span></div>
+            <button id="clear-file" type="button" aria-label="Retirer le fichier">×</button>
+          </div>
+          <button class="primary-action" id="analyze-button" type="submit" disabled>
+            <span class="button-label">Analyser localement</span>
+            <span class="button-progress">Analyse en cours…</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <article class="result-card" id="result-card">
+          <div class="empty-result" id="empty-result">
+            <div class="radar" aria-hidden="true"><span></span><i></i></div>
+            <strong>En attente d'un message suspect</strong>
+            <p>Le score, les facteurs de risque et les IOC apparaîtront ici après l'analyse.</p>
+          </div>
+
+          <div class="incident-result" id="incident-result" data-view="guided" hidden>
+            <header class="result-header">
+              <div><p class="section-kicker">Résultat de l'analyse</p><h3 id="result-subject"></h3><p id="result-from"></p></div>
+              <div class="result-view-switch" role="group" aria-label="Niveau de lecture du résultat">
+                <button type="button" data-result-view="guided" aria-pressed="true">Lecture guidée</button>
+                <button type="button" data-result-view="expert" aria-pressed="false">Vue analyste</button>
+              </div>
+            </header>
+
+            <section class="guidance-panel" id="guidance-panel" aria-labelledby="guidance-title">
+              <div class="guidance-heading">
+                <div>
+                  <p class="section-kicker">Ce qu'il faut retenir</p>
+                  <h3 id="guidance-title"></h3>
+                  <p id="guidance-explanation"></p>
+                </div>
+                <span class="guidance-level" id="guidance-level"></span>
+              </div>
+              <div class="guidance-grid">
+                <section>
+                  <h4>Principaux constats</h4>
+                  <ul class="guidance-observations" id="guidance-observations"></ul>
+                </section>
+                <section class="guidance-action">
+                  <h4>Que faire maintenant&nbsp;?</h4>
+                  <ol class="guidance-actions" id="guidance-actions"></ol>
+                </section>
+              </div>
+              <p class="guidance-boundary" id="guidance-boundary"></p>
+            </section>
+
+            <details class="technical-analysis expert-view" id="technical-analysis">
+              <summary>
+                <span><strong>Analyse technique complète</strong><small>Score, authentification, règles, IOC et empreinte de la preuve</small></span>
+                <span class="technical-toggle"><span class="show-label">Afficher</span><span class="hide-label">Masquer</span><i aria-hidden="true">⌄</i></span>
+              </summary>
+              <div class="technical-analysis-content">
+                <div class="technical-classification">
+                  <span>Classification enregistrée</span>
+                  <span class="classification" id="classification"></span>
+                </div>
+                <div class="risk-overview">
+                  <div class="score-ring" id="score-ring"><div><strong id="risk-score"></strong><span>/ 100</span></div></div>
+                  <div class="risk-copy"><span>Niveau de risque</span><strong id="risk-level"></strong><p id="risk-summary"></p></div>
+                  <dl class="incident-counts">
+                    <div><dt>IOC</dt><dd id="ioc-count">0</dd></div>
+                    <div><dt>URLs</dt><dd id="url-count">0</dd></div>
+                    <div><dt>Pièces jointes</dt><dd id="attachment-count">0</dd></div>
+                  </dl>
+                </div>
+
+                <div class="classification-assessment" id="classification-assessment">
+                  <div>
+                    <span>Piste automatique · à confirmer</span>
+                    <strong id="suggested-classification">Aucune piste</strong>
+                    <small id="classification-confidence"></small>
+                  </div>
+                  <div>
+                    <ul id="classification-reasons"></ul>
+                    <p>Cette suggestion locale n'est ni une preuve ni une décision humaine.</p>
+                  </div>
+                </div>
+
+                <div class="auth-row" aria-label="Authentification du mail">
+                  <span>Authentification</span>
+                  <div id="auth-pills"></div>
+                </div>
+
+                <div class="detail-grid">
+                  <section><h4>Facteurs observés</h4><ul class="reason-list" id="risk-reasons"></ul></section>
+                  <section><h4>Preuve locale</h4><dl class="evidence-list"><div><dt>Fichier</dt><dd id="evidence-file"></dd></div><div><dt>SHA-256</dt><dd id="evidence-hash"></dd></div></dl></section>
+                </div>
+
+                <section class="defensive-section" id="defensive-section" hidden>
+                  <div class="section-heading"><h4>Règles défensives déclenchées</h4><span id="defensive-caption"></span></div>
+                  <ul class="defensive-findings" id="defensive-findings"></ul>
+                </section>
+
+                <section class="ioc-section">
+                  <div class="section-heading"><h4>Indicateurs extraits</h4><span id="ioc-caption"></span></div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead><tr><th>Type</th><th>Valeur</th><th>Confiance</th><th>Source</th></tr></thead>
+                      <tbody id="ioc-table"></tbody>
+                    </table>
+                  </div>
+                  <p class="empty-table" id="empty-iocs" hidden>Aucun IOC extrait de ce message.</p>
+                </section>
+              </div>
+            </details>
+
+            <section class="review-panel expert-view" aria-labelledby="review-title">
+              <div class="review-heading">
+                <div>
+                  <p class="section-kicker">Validation humaine</p>
+                  <h4 id="review-title">Décision de l'analyste</h4>
+                  <p>Cette décision est horodatée et ajoutée à l'historique. Elle ne modifie jamais le score du moteur.</p>
+                </div>
+                <div class="review-current" id="review-current">
+                  <span id="review-state">Aucune décision</span>
+                  <strong id="review-verdict">À examiner</strong>
+                  <small id="review-date"></small>
+                  <p id="review-notes" hidden></p>
+                </div>
+              </div>
+
+              <form class="review-form" id="review-form">
+                <label>
+                  <span>Conclusion</span>
+                  <select id="review-verdict-select" required>
+                    <option value="">Choisir une conclusion…</option>
+                    <option value="Inconclusive">Éléments insuffisants</option>
+                    <option value="Benign">Message bénin</option>
+                    <option value="Suspicious">Message suspect</option>
+                    <option value="ConfirmedFraud">Fraude confirmée</option>
+                  </select>
+                </label>
+                <label id="classification-field" hidden>
+                  <span>Catégorie confirmée</span>
+                  <select id="review-classification">
+                    <option value="">Choisir une catégorie…</option>
+                    <option value="Spam">Spam</option>
+                    <option value="Phishing">Hameçonnage</option>
+                    <option value="Malware">Logiciel malveillant</option>
+                    <option value="Scam">Escroquerie</option>
+                    <option value="BrandImpersonation">Usurpation de marque</option>
+                    <option value="CredentialTheft">Vol d'identifiants</option>
+                  </select>
+                </label>
+                <label class="notes-field">
+                  <span>Note locale <small>facultative · 1 000 caractères</small></span>
+                  <textarea id="review-notes-input" maxlength="1000" rows="2" placeholder="Éléments ayant motivé votre décision…"></textarea>
+                </label>
+                <button class="review-action" id="review-submit" type="submit">Enregistrer la décision <span>→</span></button>
+                <p class="review-message" id="review-message" role="status" aria-live="polite"></p>
+              </form>
+
+              <section class="review-history" aria-labelledby="review-history-title">
+                <button class="review-history-toggle" id="review-history-toggle" type="button" aria-expanded="false" aria-controls="review-history-content">
+                  <span><strong id="review-history-title">Historique des décisions</strong><small>Journal local en lecture seule</small></span>
+                  <span><b id="review-history-count">0</b><i aria-hidden="true">⌄</i></span>
+                </button>
+                <div id="review-history-content" hidden>
+                  <ol class="review-history-list" id="review-history-list"></ol>
+                  <p class="review-history-empty" id="review-history-empty">Aucune décision humaine enregistrée.</p>
+                </div>
+              </section>
+            </section>
+
+            <section class="export-panel" aria-labelledby="export-title">
+              <div>
+                <p class="section-kicker">Résultat complet</p>
+                <h4 id="export-title">Conserver ou transmettre le résultat</h4>
+                <p>Le dossier ZIP contient le rapport complet et les éléments techniques utiles à une personne chargée de la sécurité. Aucun envoi n'est effectué automatiquement.</p>
+              </div>
+              <div class="export-actions">
+                <a class="bundle-action" data-export="bundle" href="#" download>
+                  Télécharger le dossier complet (.zip) <span aria-hidden="true">↓</span>
+                </a>
+                <div class="individual-exports expert-view" aria-label="Exports individuels">
+                  <a data-export="report-markdown" href="#" download>Rapport .md</a>
+                  <a data-export="incident-json" href="#" download>Incident .json</a>
+                  <a data-export="iocs-json" href="#" download>IOC .json</a>
+                  <a data-export="iocs-csv" href="#" download>IOC .csv</a>
+                  <a id="review-export" data-export="review-json" href="#" download aria-disabled="true">Décision .json</a>
+                  <a id="validated-report-export" data-export="validated-report-markdown" href="#" download aria-disabled="true" title="Disponible après confirmation humaine">Signalement .md</a>
+                </div>
+              </div>
+            </section>
+          </div>
+        </article>
+      </section>
+
+      <section class="history-section" id="history">
+        <div class="section-heading history-heading">
+          <div><p class="section-kicker">Mémoire locale</p><h2>Incidents récents</h2></div>
+          <button class="text-action" id="refresh-history" type="button">Actualiser ↻</button>
+        </div>
+        <div class="history-list" id="history-list" aria-live="polite"></div>
+        <div class="history-empty" id="history-empty" hidden>
+          <strong>Aucun incident enregistré</strong>
+          <span>Votre première analyse apparaîtra ici.</span>
+        </div>
+      </section>
+
+      <section class="campaign-section" id="campaigns">
+        <div class="section-heading campaign-heading">
+          <div>
+            <p class="section-kicker">Rapprochements locaux</p>
+            <h2>Campagnes candidates</h2>
+            <p>Frelon regroupe les incidents qui partagent des indicateurs forts. Chaque rapprochement reste une hypothèse tant qu'un humain ne l'a pas examiné.</p>
+          </div>
+          <button class="text-action" id="refresh-campaigns" type="button">Actualiser ↻</button>
+        </div>
+
+        <div class="campaign-list" id="campaign-list" aria-live="polite"></div>
+        <div class="history-empty" id="campaign-empty" hidden>
+          <strong>Aucune campagne candidate</strong>
+          <span>Les rapprochements apparaîtront ici lorsque plusieurs incidents partageront des indicateurs suffisamment forts.</span>
+        </div>
+        <p class="campaign-message" id="campaign-message" role="status" aria-live="polite"></p>
+
+        <article class="campaign-detail" id="campaign-detail" hidden>
+          <header class="campaign-detail-heading">
+            <div>
+              <p class="section-kicker">Examen humain</p>
+              <h3 id="campaign-detail-title">Campagne candidate</h3>
+              <p id="campaign-detail-period"></p>
+            </div>
+            <button class="campaign-close" id="campaign-close" type="button" aria-label="Fermer le détail">×</button>
+          </header>
+
+          <div class="campaign-overview">
+            <div><span>Incidents rapprochés</span><strong id="campaign-incident-count">0</strong></div>
+            <div><span>Liens expliqués</span><strong id="campaign-link-count">0</strong></div>
+            <div><span>État humain</span><strong id="campaign-review-state">À examiner</strong></div>
+          </div>
+
+          <section class="campaign-explanation">
+            <h4>Pourquoi ces incidents sont-ils rapprochés&nbsp;?</h4>
+            <p>Les éléments ci-dessous expliquent le calcul. Ils ne constituent pas, à eux seuls, une preuve d'attaque coordonnée.</p>
+            <div class="campaign-links" id="campaign-links"></div>
+          </section>
+
+          <section class="campaign-incidents">
+            <h4>Incidents concernés</h4>
+            <div id="campaign-incidents"></div>
+          </section>
+
+          <section class="campaign-review-panel">
+            <div>
+              <h4>Décision de l'analyste</h4>
+              <p id="campaign-review-guidance">Confirmez, rejetez ou laissez ouverte cette hypothèse. La décision sera horodatée sans modifier le calcul.</p>
+            </div>
+            <form class="campaign-review-form" id="campaign-review-form">
+              <label>
+                <span>Conclusion</span>
+                <select id="campaign-verdict" required>
+                  <option value="">Choisir une conclusion…</option>
+                  <option value="Inconclusive">Éléments insuffisants</option>
+                  <option value="Rejected">Rapprochement rejeté</option>
+                  <option value="Confirmed">Campagne confirmée</option>
+                </select>
+              </label>
+              <label>
+                <span>Note locale <small>facultative · 1 000 caractères</small></span>
+                <textarea id="campaign-notes" maxlength="1000" rows="3" placeholder="Éléments ayant motivé votre décision…"></textarea>
+              </label>
+              <button class="review-action" id="campaign-review-submit" type="submit">Enregistrer la décision <span>→</span></button>
+              <p class="review-message" id="campaign-review-message" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+
+          <section class="campaign-review-history">
+            <h4>Historique des décisions</h4>
+            <ol id="campaign-review-history"></ol>
+            <p id="campaign-review-history-empty">Aucune décision humaine enregistrée.</p>
+          </section>
+        </article>
+      </section>
+
+      <footer>
+        <span>Frelon · Moralement.NET · <span id="application-version">version locale</span> · MPL-2.0</span>
+        <span>Analyse défensive · validation humaine</span>
+      </footer>
+    </main>
+  </div>
+
+  <section class="shutdown-screen" id="shutdown-screen" hidden>
+    <span class="brand-mark" aria-hidden="true"><span>F</span></span>
+    <p class="section-kicker">Application locale</p>
+    <h1>Frelon est arrêté.</h1>
+    <p>Les données sont enregistrées. Vous pouvez fermer cet onglet en toute sécurité.</p>
+  </section>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

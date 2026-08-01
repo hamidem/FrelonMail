@@ -1,0 +1,106 @@
+name: Retour de bêta
+description: Raconter un parcours de test sans transmettre de courriel ni de donnée personnelle
+title: "[Bêta] "
+labels:
+  - beta
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci d'aider Frelon à progresser. Ce formulaire est public.
+
+        **Ne joignez aucun courriel réel, corps de message, en-tête complet, rapport, base de données ou pièce jointe.** Décrivez uniquement le comportement observé. Pour une vulnérabilité, utilisez le [signalement privé](https://github.com/hamidem/FrelonMail/security/advisories/new).
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version testée
+      options:
+        - 0.1.0-beta.1
+        - Une autre version
+    validations:
+      required: true
+
+  - type: input
+    id: windows
+    attributes:
+      label: Version de Windows
+      description: Par exemple Windows 11 24H2. Aucun identifiant de machine n'est nécessaire.
+      placeholder: Windows 11
+    validations:
+      required: true
+
+  - type: dropdown
+    id: profile
+    attributes:
+      label: Profil
+      options:
+        - Utilisateur peu technique
+        - Support ou référent informatique
+        - Sécurité ou conformité
+        - Utilisateur avancé
+        - Autre
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: missions
+    attributes:
+      label: Missions réalisées
+      options:
+        - label: A — Première impression
+        - label: B — Analyse synthétique
+        - label: C — Décision et mémoire
+        - label: D — Dossier d'analyse
+    validations:
+      required: true
+
+  - type: dropdown
+    id: assistance
+    attributes:
+      label: Aide nécessaire
+      options:
+        - Non, parcours terminé sans aide
+        - Oui, une fois
+        - Oui, plusieurs fois
+        - Parcours non terminé
+    validations:
+      required: true
+
+  - type: dropdown
+    id: understanding
+    attributes:
+      label: L'absence de signal signifie-t-elle que le message est sûr ?
+      options:
+        - Non
+        - Je ne sais pas
+        - Oui
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed
+    attributes:
+      label: Résultat observé
+      description: Décrivez les étapes et ce que Frelon a affiché, sans copier le contenu du courriel.
+      placeholder: Après avoir cliqué sur…, je m'attendais à… mais j'ai observé…
+    validations:
+      required: true
+
+  - type: textarea
+    id: difficulty
+    attributes:
+      label: Difficulté ou suggestion principale
+      description: Une seule difficulté précise vaut mieux qu'une appréciation générale.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Vérifications avant publication
+      options:
+        - label: Je confirme que ce retour ne contient aucune donnée de courriel réelle ou personnelle.
+          required: true
+        - label: Je confirme qu'il ne décrit pas une vulnérabilité nécessitant un signalement privé.
+          required: true

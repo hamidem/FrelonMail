@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "BouncyCastle.Cryptography": {
+        "type": "Transitive",
+        "resolved": "2.6.2",
+        "contentHash": "7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w=="
+      },
+      "Microsoft.Data.Sqlite.Core": {
+        "type": "Transitive",
+        "resolved": "10.0.10",
+        "contentHash": "TPCs0ldm7AWqcKmp6f/Xr+14sat7hx4rHfRlS4RgCURBH2thEWbAKEyX7cCWr63zVJVOJIJZTg2cBiUXa8ys6g==",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.1.11"
+        }
+      },
+      "Microsoft.IO.RecyclableMemoryStream": {
+        "type": "Transitive",
+        "resolved": "3.0.1",
+        "contentHash": "s/s20YTVY9r9TPfTrN5g8zPF1YhwxyqO6PxUkrYTGI2B+OGPe9AdajWZrLhFqXIvqIW23fnUE4+ztrUWNU1+9g=="
+      },
+      "Microsoft.Maui.Graphics": {
+        "type": "Transitive",
+        "resolved": "10.0.80",
+        "contentHash": "rB3Tjv/z/uJ4zZLu8HJMNo+YqpAzPlxQ+2HCkjmGbORPAPYcWF2dLP+MsCmYS/HXpFE+8kEt/Md4Oc0MbhYtzQ=="
+      },
+      "MimeKit": {
+        "type": "Transitive",
+        "resolved": "4.17.0",
+        "contentHash": "h/KXsCreJf8RpR/PSAtlbvYtZFndp9N8Wn1Bs248AL7ITyhn+AiIY5bLTvt60tbN2mu6g8KadtBNWygTji2lqg==",
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.6.2",
+          "System.Security.Cryptography.Pkcs": "10.0.0"
+        }
+      },
+      "MsgReader": {
+        "type": "Transitive",
+        "resolved": "6.1.0",
+        "contentHash": "8HUAZQzYPg6AXFNR4IZ9PDY72gOvLlB3WVlJ1L65VEK4or8/IukLjYKQcqvbJLOSXBSTHjmcs54nzxex6vUVdA==",
+        "dependencies": {
+          "Microsoft.IO.RecyclableMemoryStream": "3.0.1",
+          "Microsoft.Maui.Graphics": "10.0.80",
+          "OpenMcdf": "3.1.4",
+          "RtfPipe": "2.0.7677.4303",
+          "System.Security.Cryptography.Pkcs": "10.0.9",
+          "UTF.Unknown": "2.6.0"
+        }
+      },
+      "OpenMcdf": {
+        "type": "Transitive",
+        "resolved": "3.1.4",
+        "contentHash": "ncchtCh9YKqutHTlUCrr1llXA65ijGOCjXBM0mL1+WaGouApWDEACWbBHGzuYcAvB+rgW6IgO4AKgmZ2v1moNA=="
+      },
+      "RtfPipe": {
+        "type": "Transitive",
+        "resolved": "2.0.7677.4303",
+        "contentHash": "ek6wuC69GYVJr0b/C5mcgbFUHPLL11iAbUFqQphdBaqSoEjOdSB/HWCID5nneA5exM88UZzOTCJCMpftDYnCZA=="
+      },
+      "SQLite": {
+        "type": "Transitive",
+        "resolved": "3.53.4",
+        "contentHash": "KN7jeWqgUPeBRe1FlcpZURzxomuKKEKHmBBQfg+Nx7NkY1LjKhzHvH+3ASkNvhayESE34nMBinL9CV21JfPRJw=="
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3": {
+        "type": "Transitive",
+        "resolved": "3.0.5",
+        "contentHash": "SW8iASIyWMrLzqabUHYQRvALhvD4ylSBsj4PgEVGwc36kQjc9xT5kSV/XQ9rU7nIpBWD+LPyX3Hlw5FzyUzGeQ==",
+        "dependencies": {
+          "SQLite": "3.53.4",
+          "SQLitePCLRaw.config.e_sqlite3": "3.0.5"
+        }
+      },
+      "SQLitePCLRaw.config.e_sqlite3": {
+        "type": "Transitive",
+        "resolved": "3.0.5",
+        "contentHash": "aSk8WE5tF2MybESMgtZAEyMVCAWA0nBqOMc48HFoa9UoSdtm3goDXVzNRnefeKIwE6bV9NaNXptn1F9ReMQI0Q==",
+        "dependencies": {
+          "SQLitePCLRaw.provider.e_sqlite3": "3.0.5"
+        }
+      },
+      "SQLitePCLRaw.core": {
+        "type": "Transitive",
+        "resolved": "3.0.5",
+        "contentHash": "k81AYXXRCw3Zj8rOhyBoCsx/U97KYDFI2CSKr/ijl5BwpsW/hX/4kBiDmerFaoust8nxBwa0IHQFw8MmSHRtnQ=="
+      },
+      "SQLitePCLRaw.provider.e_sqlite3": {
+        "type": "Transitive",
+        "resolved": "3.0.5",
+        "contentHash": "um8YSWduhhuskTG2bHfZrBqMNQOydfU8pcseT+cu5RivOGyoUbCrGXxgoRNTmRYw2VbMWnEZVVFcneZT/5dsBg==",
+        "dependencies": {
+          "SQLitePCLRaw.core": "3.0.5"
+        }
+      },
+      "System.Security.Cryptography.Pkcs": {
+        "type": "Transitive",
+        "resolved": "10.0.9",
+        "contentHash": "aud6Ox9eSPayMBNu6qL+Zk7yDB6ShrRxg1aMJ1uPqFTGAFVisrjFeKj6RE9SimjNKcbl+chwmiYIK4b3hvc61A=="
+      },
+      "UTF.Unknown": {
+        "type": "Transitive",
+        "resolved": "2.6.0",
+        "contentHash": "YmmUcR9XKh3twmSjq6l0HD7qm7bj3X+gXCsdkWwpiuiB4wzGDJuCOneOQ3NvwQQEMqNeyVZOPO/EwFD4fuUoOQ=="
+      },
+      "frelon.core": {
+        "type": "Project"
+      },
+      "frelon.exporters": {
+        "type": "Project",
+        "dependencies": {
+          "Frelon.Core": "[1.0.0, )"
+        }
+      },
+      "frelon.mail": {
+        "type": "Project",
+        "dependencies": {
+          "Frelon.Core": "[1.0.0, )",
+          "MimeKit": "[4.17.0, )",
+          "MsgReader": "[6.1.0, )"
+        }
+      },
+      "frelon.reports": {
+        "type": "Project",
+        "dependencies": {
+          "Frelon.Core": "[1.0.0, )"
+        }
+      },
+      "frelon.storage": {
+        "type": "Project",
+        "dependencies": {
+          "Frelon.Core": "[1.0.0, )",
+          "Microsoft.Data.Sqlite.Core": "[10.0.10, )",
+          "SQLitePCLRaw.bundle_e_sqlite3": "[3.0.5, )"
+        }
+      }
+    },
+    "net10.0/win-x64": {
+      "SQLite": {
+        "type": "Transitive",
+        "resolved": "3.53.4",
+        "contentHash": "KN7jeWqgUPeBRe1FlcpZURzxomuKKEKHmBBQfg+Nx7NkY1LjKhzHvH+3ASkNvhayESE34nMBinL9CV21JfPRJw=="
+      },
+      "System.Security.Cryptography.Pkcs": {
+        "type": "Transitive",
+        "resolved": "10.0.9",
+        "contentHash": "aud6Ox9eSPayMBNu6qL+Zk7yDB6ShrRxg1aMJ1uPqFTGAFVisrjFeKj6RE9SimjNKcbl+chwmiYIK4b3hvc61A=="
+      }
+    }
+  }
+}

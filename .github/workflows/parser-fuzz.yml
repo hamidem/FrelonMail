@@ -1,0 +1,65 @@
+name: Parser fuzzing
+
+on:
+  push:
+    branches: [ "master", "dev" ]
+    paths:
+      - ".github/workflows/parser-fuzz.yml"
+      - "global.json"
+      - "Directory.Build.props"
+      - "src/Frelon.Core/**"
+      - "src/Frelon.Mail/**"
+      - "tests/Frelon.Mail.Tests/**"
+  schedule:
+    - cron: "37 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: parser-fuzz-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deterministic-mutations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FRELON_FUZZ_CASES: ${{ github.event_name == 'push' && '2000' || '5000' }}
+      FRELON_FUZZ_SEED: "1179796812"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: 10.0.301
+
+      - name: Restore locked dependencies
+        run: dotnet restore tests/Frelon.Mail.Tests/Frelon.Mail.Tests.csproj --locked-mode
+
+      - name: Build fuzz harness
+        run: dotnet build tests/Frelon.Mail.Tests/Frelon.Mail.Tests.csproj -c Release --no-restore
+
+      - name: Run deterministic mutation campaign
+        run: |
+          dotnet test tests/Frelon.Mail.Tests/Frelon.Mail.Tests.csproj \
+            -c Release \
+            --no-build \
+            --filter "FullyQualifiedName~ParserMutationFuzzTests.CampagneDeMutations" \
+            --verbosity normal \
+            --logger "trx;LogFileName=parser-fuzz.trx" \
+            --results-directory ./FuzzResults
+
+      - name: Upload fuzz result
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: parser-fuzz-results
+          path: ./FuzzResults
+          if-no-files-found: warn

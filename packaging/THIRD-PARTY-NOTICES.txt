@@ -1,0 +1,108 @@
+FRELON - NOTICES DE COMPOSANTS TIERS
+====================================
+
+Frelon incorpore les composants tiers ci-dessous. Ils restent soumis à leurs
+propres licences. Les liens de sources indiqués permettent de retrouver le code
+correspondant et le texte complet de chaque licence.
+
+Une copie des notices des composants tiers du runtime .NET autoporté est
+également fournie dans DOTNET-THIRD-PARTY-NOTICES.txt.
+
+
+COMPOSANTS SOUS LICENCE MIT
+---------------------------
+
+BouncyCastle.Cryptography 2.6.2
+Copyright (c) 2000-2025 The Legion of the Bouncy Castle Inc.
+https://github.com/bcgit/bc-csharp
+
+Microsoft.Data.Sqlite.Core 10.0.10
+Copyright (c) Microsoft Corporation.
+https://github.com/dotnet/dotnet
+
+Microsoft.IO.RecyclableMemoryStream 3.0.1
+Copyright (c) Microsoft Corporation.
+https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream
+
+Microsoft.Maui.Graphics 10.0.80
+Copyright (c) Microsoft Corporation.
+https://github.com/dotnet/maui
+
+MimeKit 4.17.0
+Copyright (c) .NET Foundation and Contributors.
+https://github.com/jstedfast/MimeKit
+
+MsgReader 6.1.0
+Copyright (c) 2013-2026 Kees van Spelde.
+https://github.com/Sicos1977/MSGReader
+
+RtfPipe 2.0.7677.4303
+Copyright (c) 2018 Eric Domke.
+https://github.com/erdomke/RtfPipe
+
+System.Security.Cryptography.Pkcs 10.0.9
+Copyright (c) Microsoft Corporation.
+https://github.com/dotnet/dotnet
+
+Texte de la licence MIT applicable aux composants ci-dessus :
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+COMPOSANTS SOUS LICENCE MPL-2.0
+-------------------------------
+
+SQLitePCLRaw.bundle_e_sqlite3 3.0.5
+SQLitePCLRaw.config.e_sqlite3 3.0.5
+SQLitePCLRaw.core 3.0.5
+SQLitePCLRaw.provider.e_sqlite3 3.0.5
+Copyright 2014-2026 SourceGear, LLC.
+https://github.com/ericsink/SQLitePCL.raw
+
+Le texte complet de la licence MPL-2.0 est fourni dans LICENSE.txt.
+
+
+COMPOSANTS SOUS LICENCE MOZILLA
+-------------------------------
+
+OpenMcdf 3.1.4 - Mozilla Public License 2.0 (MPL-2.0)
+Copyright (c) 2010-2026 Federico Blaseotto, Jeremy Powell.
+Sources : https://github.com/openmcdf/openmcdf
+Licence : https://www.mozilla.org/MPL/2.0/
+
+UTF.Unknown 2.6.0 - Mozilla Public License 1.1 (MPL-1.1)
+Auteurs : Julian Verdurmen, Rustam Sayfutdinov, Rudi Pettazzi, Shy Shalom.
+Sources : https://github.com/CharsetDetector/UTF-unknown
+Licence :
+https://github.com/CharsetDetector/UTF-unknown/blob/master/license/MPL-1.1.txt
+
+Frelon utilise les binaires non modifiés de ces deux composants. Leur code
+source est disponible aux adresses indiquées ci-dessus, sous les termes de
+leurs licences Mozilla respectives.
+
+
+COMPOSANT DANS LE DOMAINE PUBLIC
+--------------------------------
+
+SQLite 3.53.4
+SQLite est dans le domaine public.
+https://sqlite.org/copyright.html
+
+
+Ce document est informatif et ne remplace pas les textes de licence applicables.

@@ -1,0 +1,35 @@
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: /
+    # Les mises à jour de version suivent le flux de développement.
+    # Les alertes de sécurité restent ciblées sur la branche par défaut,
+    # conformément au fonctionnement de Dependabot.
+    target-branch: dev
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Paris
+    # Les mises à jour de version NuGet sont préparées et validées manuellement.
+    # Les mises à jour de sécurité Dependabot restent actives et indépendantes
+    # de cette limite.
+    open-pull-requests-limit: 0
+    labels:
+      - dependencies
+
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: dev
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:30"
+      timezone: Europe/Paris
+    open-pull-requests-limit: 2
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    labels:
+      - dependencies
