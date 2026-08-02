@@ -30,7 +30,7 @@ Get-FileHash .\Frelon-0.1.0-beta.1-win-x64.zip -Algorithm SHA256
 L'empreinte attendue est :
 
 ```text
-2C7798DD423C22FDFBA64BDA7178B3976B8088F10213A798E922F64339062098
+1aa347a795d6589c4431b2fea843eeeebd91851364eb88e26070862978c1f7d9
 ```
 
 L'exécutable n'est pas encore signé. Windows SmartScreen peut afficher un
